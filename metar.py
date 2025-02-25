@@ -5,10 +5,9 @@
 #
 
 import sys
-import time
-import os
 import urllib.request
 import json
+from datetime import datetime, timezone
 
 
 # Define remote urls
@@ -42,10 +41,7 @@ metarjson = json.loads(urlfetcher(metartafurl).decode())
 awsjson = json.loads(urlfetcher(awsmetarurl).decode())
 
 # Get UTC time into variable
-# ST = time.strftime("%H:%M %Z")
-os.environ['TZ'] = 'UTC'
-time.tzset()
-UTC = time.strftime("%d %b %H:%M %Z")
+UTC = datetime.now(timezone.utc).strftime("%b %d %H:%M %Z")
 
 print("\n\tFetched", UTC, "\n")
 
